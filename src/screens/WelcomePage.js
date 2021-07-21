@@ -28,7 +28,11 @@ class Welcome extends React.Component {
             onBlur={() => {
               Keyboard.dismiss();
             }}
-            style={{width: '90%', alignSelf: 'center'}}
+            style={{
+              width: '90%',
+              alignSelf: 'center',
+              backgroundColor: '#fff',
+            }}
             onChangeText={v => this.setState({name: v})}
             theme={{
               colors: {primary: '#000000', underlineColor: 'transparent'},
@@ -39,7 +43,7 @@ class Welcome extends React.Component {
               marginVertical: 55,
               width: '45%',
               alignSelf: 'center',
-              backgroundColor: styles.colors.brown,
+              backgroundColor: styles.colors.primary,
             }}
             labelStyle={{fontSize: 20}}
             onPress={() => {

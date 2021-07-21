@@ -6,6 +6,8 @@ import {styles} from '../globals';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {pinPost} from '../redux/actions';
+import {Header} from '../components';
+
 class Post extends React.Component {
   constructor(props) {
     super(props);
@@ -46,16 +48,11 @@ class Post extends React.Component {
   render() {
     return (
       <View style={screenStyles.container}>
-        <Text style={styles.elements.title}>
-          post.
-          {!this.state.posts ? (
-            <ActivityIndicator
-              style={{alignSelf: 'center'}}
-              color={styles.colors.black}
-              animating={true}
-            />
-          ) : null}
-        </Text>
+        <Header
+          title="posts"
+          loading={this.state.posts.length === 0 ? true : false}
+          nav={this.props.navigation}
+        />
 
         <FlatList
           data={this.state.posts}
@@ -71,7 +68,7 @@ const screenStyles = StyleSheet.create({
   container: {backgroundColor: '#fff', height: '100%'},
 
   post: {
-    backgroundColor: styles.colors.brown,
+    backgroundColor: styles.colors.primary,
     marginVertical: 20,
     padding: 18,
     width: '90%',

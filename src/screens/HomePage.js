@@ -33,13 +33,22 @@ class HomePage extends React.Component {
             style={screenStyles.index_element}>
             users
           </Button>
-          <Button mode="contained" style={screenStyles.index_element}>
+          <Button
+            onPress={() => this.navigateTo('comment')}
+            mode="contained"
+            style={screenStyles.index_element}>
             comments
           </Button>
-          <Button mode="contained" style={screenStyles.index_element}>
+          <Button
+            onPress={() => this.navigateTo('album')}
+            mode="contained"
+            style={screenStyles.index_element}>
             albums
           </Button>
-          <Button mode="contained" style={screenStyles.index_element}>
+          <Button
+            onPress={() => this.navigateTo('todo')}
+            mode="contained"
+            style={screenStyles.index_element}>
             todos
           </Button>
         </View>
@@ -60,7 +69,7 @@ const screenStyles = StyleSheet.create({
     marginVertical: '2%',
     fontWeight: '700',
     width: '100%',
-    backgroundColor: colors.brown,
+    backgroundColor: colors.primary,
   },
 });
 

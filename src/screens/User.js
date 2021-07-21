@@ -6,6 +6,7 @@ import {styles} from '../globals';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {pinUser} from '../redux/actions';
+import {Header} from '../components';
 class User extends React.Component {
   constructor(props) {
     super(props);
@@ -45,14 +46,11 @@ class User extends React.Component {
   render() {
     return (
       <View style={screenStyles.container}>
-        <Text style={styles.elements.title}>
-          users.
-          <ActivityIndicator
-            style={{alignSelf: 'center'}}
-            color={styles.colors.black}
-            animating={this.state.users && true}
-          />
-        </Text>
+        <Header
+          title="users"
+          loading={this.state.users.length === 0 ? true : false}
+          nav={this.props.navigation}
+        />
 
         <FlatList
           data={this.state.users}
@@ -68,7 +66,7 @@ const screenStyles = StyleSheet.create({
   container: {backgroundColor: '#fff', height: '100%'},
 
   post: {
-    backgroundColor: styles.colors.brown,
+    backgroundColor: styles.colors.primary,
     marginVertical: 20,
     padding: 18,
     width: '90%',

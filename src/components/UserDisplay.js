@@ -14,7 +14,7 @@ export default function UserDisplay({username}) {
 
 const screenStyles = StyleSheet.create({
   container: {
-    backgroundColor: styles.colors.brown,
+    backgroundColor: styles.colors.primary,
     alignItems: 'center',
     alignSelf: 'center',
     width: '50%',

@@ -6,7 +6,7 @@ export const pinUser = v => ({
   type: 'PIN_USER',
   payload: v,
 });
-export const pinAlbum = () => ({});
+export const pinAlbum = v => ({type: 'PIN_ALBUM', payload: v});
 export const pinTodo = () => ({});
 export const pinComment = () => ({});
 

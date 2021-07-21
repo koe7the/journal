@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 const colors = {
   black: '#0B0A0D',
   lightGray: '#A4A49E',
-  brown: '#5A2516',
+  primary: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
 };
 
 const elements = StyleSheet.create({
