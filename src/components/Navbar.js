@@ -1,13 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {SearchBar} from 'react-native-elements';
+import {useDispatch} from 'react-redux';
+import {logOut} from '../redux/actions';
 
 export default () => {
-  const [state, setState] = useState(null);
-
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={() => dispatch(logOut())}>
+        <Icon name="terminal" style={styles.log_out_icon} />
+      </TouchableOpacity>
       <SearchBar
         style={styles.searchbar_element}
         placeholder="Search here..."
@@ -26,20 +30,23 @@ const styles = StyleSheet.create({
     paddingTop: '7%',
     paddingHorizontal: '10%',
     width: '100%',
-  },
-  searchbar_element: {
-    flex: 1,
-    width: '100%',
-    borderColor: 'red',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   searchbar_container: {
     backgroundColor: '#fff',
     borderTopColor: 'transparent',
     borderBottomColor: 'transparent',
+    width: '100%',
   },
+  searchbar_element: {},
   searchbar_input_container: {
     display: 'flex',
     flexDirection: 'row-reverse',
     backgroundColor: '#fff',
+  },
+  log_out_icon: {
+    fontSize: 35,
   },
 });

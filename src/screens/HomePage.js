@@ -2,9 +2,10 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {styles} from '../globals';
 import {Navbar} from '../components';
+import {connect} from 'react-redux';
 const {colors, elements} = styles;
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
   render() {
     return (
       <View style={elements.screen}>
@@ -33,3 +34,10 @@ const screenStyles = StyleSheet.create({
     fontWeight: '700',
   },
 });
+
+const mapStateToProps = state => {
+  let {user} = state;
+  return {user};
+};
+
+export default connect(mapStateToProps)(HomePage);
