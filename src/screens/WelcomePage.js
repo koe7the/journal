@@ -10,14 +10,10 @@ class Welcome extends React.Component {
     name: '',
   };
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   render() {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.elements.screen}>
+        <View style={{...styles.elements.screen, justifyContent: 'center'}}>
           <Text style={{fontSize: 60, alignSelf: 'center', marginVertical: 50}}>
             Welcome!
           </Text>

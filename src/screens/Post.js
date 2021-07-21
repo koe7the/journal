@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
-import {Button, ActivityIndicator} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {styles} from '../globals';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {pinPost} from '../redux/actions';
-import {Header} from '../components';
+import {Header, Item} from '../components';
 
 class Post extends React.Component {
   constructor(props) {
@@ -57,7 +57,9 @@ class Post extends React.Component {
         <FlatList
           data={this.state.posts}
           keyExtractor={item => item.id}
-          renderItem={this.item}
+          renderItem={({item}) => (
+            <Item item={item} pin={() => this.props.dispatch(pinPost(item))} />
+          )}
         />
       </View>
     );
