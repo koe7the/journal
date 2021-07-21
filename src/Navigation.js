@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
-import {WelcomePage, HomePage} from './screens';
+import {WelcomePage, HomePage, Post, User} from './screens';
 import {NavigationContainer} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
@@ -13,9 +13,15 @@ export default function Routes() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         {user ? (
-          <Stack.Screen name="home" component={HomePage} />
+          <>
+            <Stack.Screen name="home" component={HomePage} />
+            <Stack.Screen name="post" component={Post} />
+            <Stack.Screen name="user" component={User} />
+          </>
         ) : (
-          <Stack.Screen name="welcome" component={WelcomePage} />
+          <>
+            <Stack.Screen name="welcome" component={WelcomePage} />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

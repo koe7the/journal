@@ -5,22 +5,22 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {styles} from '../globals';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {pinPost} from '../redux/actions';
-class Post extends React.Component {
+import {pinUser} from '../redux/actions';
+class User extends React.Component {
   constructor(props) {
     super(props);
     this.item = this.item.bind(this);
   }
 
   state = {
-    posts: [],
+    users: [],
   };
 
   componentDidMount() {
     axios
-      .get('https://jsonplaceholder.typicode.com/posts')
+      .get('https://jsonplaceholder.typicode.com/users')
       .then(({data}) => {
-        this.setState({posts: data.slice(60)});
+        this.setState({users: data});
       })
       .catch(err => console.log(err));
   }
@@ -29,16 +29,15 @@ class Post extends React.Component {
     return (
       <View style={screenStyles.post}>
         <View style={{flexDirection: 'row'}}>
-          <Text style={screenStyles.post_title}>{item.title}</Text>
+          <Text style={screenStyles.user_name}>{item.name}</Text>
           <Button
-            onPress={() => this.props.dispatch(pinPost(item))}
+            onPress={() => this.props.dispatch(pinUser(item))}
             theme={{
               colors: {primary: '#fff', underlineColor: 'transparent'},
             }}>
-            <Icon style={screenStyles.post_icon} name="save" />
+            <Icon style={screenStyles.icon} name="save" />
           </Button>
         </View>
-        <Text style={screenStyles.post_body}>{item.body}</Text>
       </View>
     );
   }
@@ -47,18 +46,16 @@ class Post extends React.Component {
     return (
       <View style={screenStyles.container}>
         <Text style={styles.elements.title}>
-          post.
-          {!this.state.posts ? (
-            <ActivityIndicator
-              style={{alignSelf: 'center'}}
-              color={styles.colors.black}
-              animating={true}
-            />
-          ) : null}
+          users.
+          <ActivityIndicator
+            style={{alignSelf: 'center'}}
+            color={styles.colors.black}
+            animating={this.state.users && true}
+          />
         </Text>
 
         <FlatList
-          data={this.state.posts}
+          data={this.state.users}
           keyExtractor={item => item.id}
           renderItem={this.item}
         />
@@ -77,7 +74,7 @@ const screenStyles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
   },
-  post_title: {
+  user_name: {
     fontSize: 25,
     flex: 1,
     color: '#fff',
@@ -85,7 +82,7 @@ const screenStyles = StyleSheet.create({
   post_body: {
     color: '#fff',
   },
-  post_icon: {
+  icon: {
     color: '#fff',
     fontSize: 25,
     marginLeft: 10,
@@ -93,8 +90,8 @@ const screenStyles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  let {posts} = state;
-  return {posts};
+  let {users} = state;
+  return {users};
 };
 
-export default connect(mapStateToProps)(Post);
+export default connect(mapStateToProps)(User);

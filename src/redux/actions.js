@@ -1,5 +1,11 @@
-export const pinPost = () => ({});
-export const pinUser = () => ({});
+export const pinPost = v => ({
+  type: 'PIN_POST',
+  payload: v,
+});
+export const pinUser = v => ({
+  type: 'PIN_USER',
+  payload: v,
+});
 export const pinAlbum = () => ({});
 export const pinTodo = () => ({});
 export const pinComment = () => ({});
