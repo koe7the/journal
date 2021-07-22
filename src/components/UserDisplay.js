@@ -1,14 +1,16 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {styles} from '../globals';
 
-export default function UserDisplay({username}) {
+export default function UserDisplay({username, nav}) {
   return (
-    <View style={screenStyles.container}>
+    <TouchableOpacity
+      onPress={() => nav.navigate('profile')}
+      style={screenStyles.container}>
       <Icon name="user" style={screenStyles.icon} />
       <Text style={screenStyles.username}>{username}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 

@@ -1,19 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
-import {Button, ActivityIndicator} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {styles} from '../globals';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {pinPost} from '../redux/actions';
-import {Header} from '../components';
+import {pinPost, pinTodo} from '../redux/actions';
+import {Header, Item} from '../components';
 
 class Post extends React.Component {
-  constructor(props) {
-    super(props);
-    this.item = this.item.bind(this);
-  }
-
   state = {
     todos: [],
   };
@@ -25,24 +18,6 @@ class Post extends React.Component {
         this.setState({todos: data.slice(60)});
       })
       .catch(err => console.log(err));
-  }
-
-  item({item}) {
-    return (
-      <View style={screenStyles.post}>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={screenStyles.item_title}>{item.title}</Text>
-          <Button
-            onPress={() => this.props.dispatch(pinPost(item))}
-            theme={{
-              colors: {primary: '#fff', underlineColor: 'transparent'},
-            }}>
-            <Icon style={screenStyles.item_icon} name="save" />
-          </Button>
-        </View>
-        <Text style={screenStyles.post_body}>{item.completed}</Text>
-      </View>
-    );
   }
 
   render() {
@@ -57,7 +32,12 @@ class Post extends React.Component {
         <FlatList
           data={this.state.todos}
           keyExtractor={item => item.id}
-          renderItem={this.item}
+          renderItem={({item}) => (
+            <Item
+              item={item}
+              pin={elem => this.props.dispatch(pinTodo(elem))}
+            />
+          )}
         />
       </View>
     );

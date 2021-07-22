@@ -5,5 +5,6 @@ import Todo from './Todo';
 import Album from './Album';
 import User from './User';
 import Comment from './Comment';
+import ProfilePage from './ProfilePage';
 
-export {HomePage, Post, WelcomePage, Album, Comment, Todo, User};
+export {HomePage, Post, WelcomePage, Album, Comment, Todo, User, ProfilePage};

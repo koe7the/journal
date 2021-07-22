@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {ActivityIndicator, Button} from 'react-native-paper';
+import {Text, View, TouchableOpacity} from 'react-native';
+import {ActivityIndicator} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {styles} from '../globals';
 
@@ -8,18 +8,15 @@ export default function ({nav, loading, title}) {
   return (
     <View
       style={{
-        paddingRight: '5%',
-        paddingLeft: '1%',
+        paddingHorizontal: '5%',
         alignItems: 'center',
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
       }}>
-      <Button
-        theme={{colors: {primary: '#000000'}}}
-        onPress={() => nav.goBack()}>
+      <TouchableOpacity onPress={() => nav.goBack()}>
         <Icon style={{fontSize: 70}} name="caret-left" />
-      </Button>
+      </TouchableOpacity>
       <Text
         style={{
           ...styles.elements.title,
@@ -29,7 +26,6 @@ export default function ({nav, loading, title}) {
         {title}
       </Text>
       <ActivityIndicator
-        style={{alignSelf: 'center'}}
         size={35}
         color={styles.colors.black}
         animating={loading}

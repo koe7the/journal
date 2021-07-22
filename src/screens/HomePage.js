@@ -17,7 +17,7 @@ class HomePage extends React.Component {
     return (
       <View style={elements.screen}>
         <Navbar />
-        <UserDisplay username={this.props.user} />
+        <UserDisplay username={this.props.user} nav={this.props.navigation} />
         <Text style={elements.title}>home page</Text>
 
         <View style={screenStyles.index}>

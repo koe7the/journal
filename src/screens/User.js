@@ -1,18 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
-import {Button, ActivityIndicator} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {View, StyleSheet, FlatList} from 'react-native';
+
 import {styles} from '../globals';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {pinUser} from '../redux/actions';
-import {Header} from '../components';
+import {Header, Item} from '../components';
 class User extends React.Component {
-  constructor(props) {
-    super(props);
-    this.item = this.item.bind(this);
-  }
-
   state = {
     users: [],
   };
@@ -24,23 +18,6 @@ class User extends React.Component {
         this.setState({users: data});
       })
       .catch(err => console.log(err));
-  }
-
-  item({item}) {
-    return (
-      <View style={screenStyles.post}>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={screenStyles.user_name}>{item.name}</Text>
-          <Button
-            onPress={() => this.props.dispatch(pinUser(item))}
-            theme={{
-              colors: {primary: '#fff', underlineColor: 'transparent'},
-            }}>
-            <Icon style={screenStyles.icon} name="save" />
-          </Button>
-        </View>
-      </View>
-    );
   }
 
   render() {
@@ -55,7 +32,12 @@ class User extends React.Component {
         <FlatList
           data={this.state.users}
           keyExtractor={item => item.id}
-          renderItem={this.item}
+          renderItem={({item}) => (
+            <Item
+              item={item}
+              pin={elem => this.props.dispatch(pinUser(elem))}
+            />
+          )}
         />
       </View>
     );

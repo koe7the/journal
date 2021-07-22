@@ -1,32 +1,37 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {styles} from '../globals';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {Button} from 'react-native-paper';
 
-export default function Item({item, pin}) {
+export default function Item({item, pin, album, pinned}) {
   return (
     <View style={compStyles.container}>
       <View style={{flexDirection: 'row'}}>
         <Text style={compStyles.title}>
           {item?.title} {item?.name}
         </Text>
-        <Button
-          onPress={() => pin(item)}
-          theme={{
-            colors: {primary: '#fff', underlineColor: 'transparent'},
-          }}>
-          <Icon style={compStyles.icon} name="save" />
-        </Button>
+        {!pinned ? (
+          <Button
+            onPress={() => pin(item)}
+            theme={{
+              colors: {primary: '#fff', underlineColor: 'transparent'},
+            }}>
+            <Icon style={compStyles.icon} name="save" />
+          </Button>
+        ) : null}
       </View>
-      <View style={{alignItems: 'center', marginVertical: 20}}>
-        <Image
-          source={{
-            uri: 'https://picsum.photos/700/800',
-            height: 200,
-            width: 300,
-          }}
-        />
-      </View>
+      {album ? (
+        <View style={{alignItems: 'center', marginVertical: 20}}>
+          <Image
+            source={{
+              uri: 'https://picsum.photos/700/800',
+              height: 200,
+              width: 300,
+            }}
+          />
+        </View>
+      ) : null}
 
       <Text style={compStyles.body}>{item?.body}</Text>
     </View>

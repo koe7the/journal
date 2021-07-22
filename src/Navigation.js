@@ -9,6 +9,7 @@ import {
   Album,
   Comment,
   Todo,
+  ProfilePage,
 } from './screens';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -28,6 +29,7 @@ export default function Routes() {
             <Stack.Screen name="album" component={Album} />
             <Stack.Screen name="comment" component={Comment} />
             <Stack.Screen name="todo" component={Todo} />
+            <Stack.Screen name="profile" component={ProfilePage} />
           </>
         ) : (
           <>
