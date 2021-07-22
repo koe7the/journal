@@ -16,6 +16,7 @@ const userReducer = (state = userState, {type, payload}) => {
 
     case 'LOG_OUT':
       return '';
+    
 
     default:
       return state;
@@ -30,6 +31,9 @@ const postsReducer = (state = postsState, {type, payload}) => {
       let res = state.slice(state.indexOf(payload), 1);
       return res;
 
+    case "CLEAN":
+      return [];
+
     default:
       return state;
   }
@@ -42,6 +46,9 @@ const usersReducer = (state = usersState, {type, payload}) => {
     case 'UNPIN_USER':
       let res = state.slice(state.indexOf(payload), 1);
       return res;
+
+    case "CLEAN":
+      return [];
 
     default:
       return state;
@@ -56,6 +63,9 @@ const commentsReducer = (state = commentsState, {type, payload}) => {
       let res = state.slice(state.indexOf(payload), 1);
       return res;
 
+    case "CLEAN":
+      return [];
+
     default:
       return state;
   }
@@ -69,6 +79,9 @@ const todosReducer = (state = todosState, {type, payload}) => {
       let res = state.slice(state.indexOf(payload), 1);
       return res;
 
+    case "CLEAN":
+      return [];
+
     default:
       return state;
   }
@@ -81,6 +94,9 @@ const albumsReducer = (state = albumsState, {type, payload}) => {
     case 'UNPIN_ALBUM':
       let res = state.slice(state.indexOf(payload), 1);
       return res;
+
+    case "CLEAN":
+      return [];
 
     default:
       return state;
